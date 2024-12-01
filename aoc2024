@@ -1,1 +1,6 @@
 
+day1:{({sum abs(-). x};{sum x[0]*sum each x[0]=\: x 1})@\: asc each flip "J"$"   "vs/:read0 x}
+/
+day1 `:input1
+2192892 22962826
+\
