@@ -4,3 +4,12 @@ day1:{({sum abs(-). x};{sum x[0]*sum each x[0]=\: x 1})@\: asc each flip "J"$"  
 day1 `:input1
 2192892 22962826
 \
+
+day2:{
+   f:{(all abs[v]within 1 3)&all 1_(=':) signum v:1_deltas x};
+  sum each (f each res;any each f@/:'{{x _y}[x] each til count x}each res:"J"$" "vs/:read0 x)
+}
+/
+day2 `:input2
+524 569i
+\
