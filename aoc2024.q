@@ -18,7 +18,7 @@ day2 `:input2
 day3:{
   r:raze read0 x;
   f:sum 0^(*)./: ("JJ";",")0:/: 1#'")"vs/:"mul(" vs;
-  r1:(0,asc ss[r;v:"don't()"],ss[r;"do()"]) _r;
+  r1:(distinct 0,asc ss[r;v:"don't()"],ss[r;"do()"]) _r;
   raze (f r;f raze r1 where not r1 like "don't()*") 
  } 
 /
