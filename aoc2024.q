@@ -18,9 +18,9 @@ day2 `:input2
 day3:{
   r:raze read0 x;
   f:sum 0^(*)./: ("JJ";",")0:/: 1#'")"vs/:"mul(" vs;
-  r1:(0,asc ss[res;v:"don't()"],ss[res;"do()"]) _res;
-  raze (f res;f raze res1 where not res1 like "don't()*") 
- }
+  r1:(0,asc ss[r;v:"don't()"],ss[r;"do()"]) _r;
+  raze (f r;f raze r1 where not r1 like "don't()*") 
+ } 
 /
 day3 `:input3
 174336360 88802350
