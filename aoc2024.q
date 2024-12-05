@@ -31,7 +31,7 @@ day4:{[x]
   i:count 1_s:"XMAS";
   m:(2*i)+n:count first r;
   /raze to one dimention and then use step p to match index in the order of y
-  c:where each raze[w,/:r,\:w:i#"."]=/:s; /add 3 dummy margins to avoid looking through
+  c:where each raze[w,/:r,\:w:i#"."]=/:s; /add 3 dummy margins to avoid looking across the first and last columns
   p:raze k,v,l:(k:-1 1)+/:\:v:-1 1*m;
   r1:sum 3=sum each(raze c[0]+\:p*\:1+til i ) in'\: 1_c;
   r2:sum sum 2=(sum'')(all'')(c[2]+\: k,reverse each k:(l;flip l))in'\:\: c[1 3]; /flip index to match all patterns
