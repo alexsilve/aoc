@@ -41,3 +41,16 @@ day4:{[x]
 day4 `:input4
 2397 1824
 \
+
+day5:{
+  r:(0,where r like "")_r:read0 x;
+  r1:group (!). reverse ("JJ";"|")0: r 0; /for each number, get all the numbers should be after it.
+  r2:1_"J"$","vs/:r 1;
+  n:count'[r2]div 2;
+  r3:{x idesc sum each x in/: y x}[;r1] each r2; /for a given a list, get the count of numbers should be after each number and then sort the list
+  (sum each group (./:[r3;(til count r3),'n])!r3~'r2) 10b
+ }
+/
+day5 `:input5
+6034 6305
+\
