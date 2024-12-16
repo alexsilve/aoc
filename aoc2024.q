@@ -72,20 +72,17 @@ day6:{
   v:{not any x[1] in y}[;t] f[d;(o;t);]/ (0;s); /stop building path when hit terminators;
   p:v 1; / turning points
   a1:count p2:-1_distinct raze p1:{x,x+z*1+til (y-x) div z} .' (1_(prev p),'p),'-1_d (count v[1])#til 4; / only need to compare aginst the previous one to build the path
-  g2:{[x;y;z;n]
+  g1:{[x;y;z;n]
      c:2_b:last a:(n+1)#z; /all possible new obstacle
      g:{[f;lst;num;ind;pa]
          a:pa ind+1;
          c:pa ind+2;
-         /t1:o,first[pa], lst . 1 1;
-         /{(not 0 in deltas x[1]) & (not any x[1] in y) & (x[0]<1000)}[;b,(lst . 1 1)] f[lst 0;(b,lst . 1 0;lst . 1 1);]/ ((num+1) mod 4;(),a;b)
-         /(num+1) f[lst 0;(b,lst . 1 0;lst . 1 1);]/ ((num+1) mod 4;(),a;b)
-         {(not last[x[2]] in -1_x[2]) & (not any x[1] in y) & (x[0]<1000)}[;c,(lst . 1 1)] f[lst 0;(c,lst . 1 0;lst . 1 1);]/ ((num+1) mod 4;(),a;(),c)
+         {(not last[x[2]] in -1_x[2]) & (not last[x[2]] in -1_x[2]) & not any x[1] in y}[;c,(lst . 1 1)] f[lst 0;(c,lst . 1 0;lst . 1 1);]/ ((num+1) mod 4;(),a;(),c)
       }[x;y;n;;b];
      path:g each til count c;
-     first'[path[;2]] where (last'[path[;1]] in' -1_'path[;1]) & (not last'[path[;2]] in y . 1 1)
+     first'[path[;2]] where (last'[path[;1]] in' -1_'path[;1]) & (last'[path[;2]] in' -2_'path[;1]) & not last'[path[;2]] in y . 1 1
     }[f;(d;(o;t));p1;];
-   a2:count distinct raze g2 each 1_til count p1; / add obstacles starting path 1
+   a2:count distinct raze g1 each 1_til count p1; / add obstacles starting path 1
    (a1;a2)
  }
 /
