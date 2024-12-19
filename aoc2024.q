@@ -103,3 +103,78 @@ day7 `:input7
 5030892084481 91377448644679j
 \
 
+day8:{
+  res:read0 x;
+  a:distinct (res1:raze res) except ".";
+  b:(div;mod).\: (til count res1;c:first count each res);
+  f1:{(x+d;y-d:x-y)};f2:{(x+/:reverse d),y-/:d:z*\:x-y}[;;til count res1];
+  a1:count distinct raze {[x;y;z;f]j:flip h:distinct 0N 2#(raze/)e f/:\:e:flip x[;y];(h where all j within z)except e}[b;;(0;-1+c);f1]each where each res1=/:a;
+  a2:count distinct raze {[x;y;z;f]j:flip h:distinct 0N 2#(raze/)e f/:\:e:flip x[;y];h where all j within z}[b;;(0;-1+c);f2]each where each res1=/:a;
+  (a1;a2)
+ }
+/
+day8 `:input8
+400 1280
+\
+
+day9:{
+  res:raze read0 x;
+  idl:"J"$id:1#'0N 2#res; /files length
+  idn:idl#'n:til count id; /files id
+  fs:0^"J"$1_'0N 2#res; / free space length
+  /replace with tokens so double digits could fit in one place holder
+  ids:idl#'"#";
+  fss:fs#'"*";
+  fs1:raze ids,'fss;
+  fsb:count[raze idn]#fs1;
+  fsbn:sum fsb="*";
+  d1:fsbn#reverse raze idn;
+  m1:where fsb="*";
+  m2:where fsb="#";
+  a1:sum raze (d1*m1),(count[m2]#raze idn)*m2;
+  / part2, iteration
+  / move rightmost "#" to fill in leftmost "*" in whole til no more "*" with size larger than any "#" on its right
+  f:{b:x[0]=a:"*";g:sum each e:(d:where differ b)_ b;h:first where z<=g;
+      j:x[2] i:where x[1]=y;
+      k:(d h)+til z;
+      $[(any k>j)| null h;x; 
+        ("#*"@[b;k,j;:;raze z#/:01b];raze idn;@[x 2;i;:;k])
+       ]
+     };
+   a2:sum prd 1_f/[(fs1;raze idn;where fs1="#");reverse 1_n;reverse 1_idl];
+   (a1;a2)
+ } `:input9
+/
+day9 `:input9
+6399153661894 6421724645083
+\
+
+/day 10
+day10:{
+   n:count res:read0 x;
+   res1:raze ".",/:(r,res,r:enlist n#"."),\:".";
+   l:ss[res1;] each string til 10;
+   s:neg[n+2],1,-1,n+2;
+   f:{b:(a:last'[x 2])+\:x[0];j:distinct raze (x[2],/:'b @' where each c)where any each c:b in x . 1,y+1;(-1_x),enlist j };
+   a:(f/ [(s;l;l 0);-1_til 10]) 2;
+   count each distinct each ((last;first)@\:/:;::)@\:a
+ }
+/
+day10 `:input10
+550 1255
+\
+
+day11:{ 
+  r:"J"$" "vs raze read0 x;
+  / f:{v:count each group x;n:(2024*;{"J"$2 0N#string x};{1})./: flip (2^mod [floor {10 xlog x}key v;2];key[v]);raze raze value[v]#'enlist each n};
+  / g:{count raze x y/ z}[;f;r];
+  / rewrote based on https://github.com/sean185/aoc/blob/main/2024/d11.q, original function is running slow
+  f1:{raze (2024*;{"J"$2 0N#string x};{1}). (2^mod [floor {10 xlog x}x;2];x)};
+  g1:{select sum c by v from ungroup update x each v from y}[f1;];
+  sum y g1/ ([]v:r;c:1)
+ }
+
+/
+ exec c from day11[`:input11] each 25 75
+203609 240954878211138
+\
