@@ -106,7 +106,7 @@ day7 `:input7
 day8:{
   res:read0 x;
   a:distinct (res1:raze res) except ".";
-  b:(div;mod).\: (til count res1;c:first count each res);
+  b:(c:count first res) vs til count res1;
   f1:{(x+d;y-d:x-y)};f2:{(x+/:reverse d),y-/:d:z*\:x-y}[;;til count res1];
   a1:count distinct raze {[x;y;z;f]j:flip h:distinct 0N 2#(raze/)e f/:\:e:flip x[;y];(h where all j within z)except e}[b;;(0;-1+c);f1]each where each res1=/:a;
   a2:count distinct raze {[x;y;z;f]j:flip h:distinct 0N 2#(raze/)e f/:\:e:flip x[;y];h where all j within z}[b;;(0;-1+c);f2]each where each res1=/:a;
@@ -143,7 +143,7 @@ day9:{
      };
    a2:sum prd 1_f/[(fs1;raze idn;where fs1="#");reverse 1_n;reverse 1_idl];
    (a1;a2)
- } `:input9
+ }
 /
 day9 `:input9
 6399153661894 6421724645083
